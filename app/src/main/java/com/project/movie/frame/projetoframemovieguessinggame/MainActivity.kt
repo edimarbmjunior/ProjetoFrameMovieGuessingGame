@@ -10,14 +10,19 @@ import androidx.compose.runtime.getValue
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.project.movie.frame.projetoframemovieguessinggame.data.AppSettingsRepository
 import com.project.movie.frame.projetoframemovieguessinggame.data.LocaleContextWrapper
 import com.project.movie.frame.projetoframemovieguessinggame.data.dataStore
+import com.project.movie.frame.projetoframemovieguessinggame.data.json.MovieJsonLoader
+import com.project.movie.frame.projetoframemovieguessinggame.data.repository.MovieRepository
 import com.project.movie.frame.projetoframemovieguessinggame.ui.screens.FinishScreen
 import com.project.movie.frame.projetoframemovieguessinggame.ui.screens.GameScreen1
+import com.project.movie.frame.projetoframemovieguessinggame.ui.screens.GameScreen1Askeds
 import com.project.movie.frame.projetoframemovieguessinggame.ui.screens.HomeScreen
 import com.project.movie.frame.projetoframemovieguessinggame.ui.theme.AppSettingsViewModel
 import com.project.movie.frame.projetoframemovieguessinggame.ui.theme.ProjetoFrameMovieGuessingGameTheme
@@ -28,6 +33,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class MainActivity : ComponentActivity() {
+
+    val movieRepository = MovieRepository()
 
     override fun attachBaseContext(newBase: Context) {
         val localeTag = runBlocking {
@@ -43,11 +50,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        val repository = AppSettingsRepository(this)
+        val settingsRepository = AppSettingsRepository(this)
+
+        MovieJsonLoader.preloadFromAssets(
+            context = this,
+            assetPath = "movies.json",
+            repository = movieRepository
+        )
 
         setContent {
             val viewModel: AppSettingsViewModel = viewModel(
-                factory = AppSettingsViewModel.Factory(repository)
+                factory = AppSettingsViewModel.Factory(settingsRepository)
             )
             val isDarkTheme by viewModel.isDarkTheme.collectAsState()
             val appLocale by viewModel.appLocale.collectAsState()
@@ -65,7 +78,25 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     composable("game1") {
-                        GameScreen1(navController = navController)
+                        GameScreen1(
+                            navController = navController,
+                            movieRepository = movieRepository
+                        )
+                    }
+                    composable(
+                        "game1Askeds/{difficulty}/{category}",
+                        arguments = listOf(
+                            navArgument("difficulty") { type = NavType.StringType },
+                            navArgument("category") { type = NavType.StringType }
+                        )
+                    ) { backStackEntry ->
+                        val difficulty = backStackEntry.arguments?.getString("difficulty") ?: ""
+                        val category = backStackEntry.arguments?.getString("category") ?: ""
+                        GameScreen1Askeds(
+                            navController = navController,
+                            difficulty = difficulty,
+                            category = category
+                        )
                     }
                     composable("finish") {
                         FinishScreen(navController = navController)
@@ -75,7 +106,7 @@ class MainActivity : ComponentActivity() {
         }
 
         lifecycleScope.launch {
-            repository.appLocale.drop(1).collect {
+            settingsRepository.appLocale.drop(1).collect {
                 recreate()
             }
         }

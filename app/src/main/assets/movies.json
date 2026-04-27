@@ -1,0 +1,50 @@
+[
+  {
+    "name": "The Shawshank Redemption",
+    "year": 1994,
+    "director": "Frank Darabont",
+    "category": "Drama",
+    "images": [
+      {
+        "path": "images/shawshank_easy.jpg",
+        "difficulty": "EASY"
+      },
+      {
+        "path": "images/shawshank_medium.jpg",
+        "difficulty": "MEDIUM"
+      }
+    ]
+  },
+  {
+    "name": "The Godfather",
+    "year": 1972,
+    "director": "Francis Ford Coppola",
+    "category": "Crime",
+    "images": [
+      {
+        "path": "images/godfather_hard.jpg",
+        "difficulty": "HARD"
+      },
+      {
+        "path": "images/godfather_medium.jpg",
+        "difficulty": "MEDIUM"
+      }
+    ]
+  },
+  {
+    "name": "Inception",
+    "year": 2010,
+    "director": "Christopher Nolan",
+    "category": "Sci-Fi",
+    "images": [
+      {
+        "path": "images/inception_easy.jpg",
+        "difficulty": "EASY"
+      },
+      {
+        "path": "images/inception_hard.jpg",
+        "difficulty": "HARD"
+      }
+    ]
+  }
+]

@@ -24,4 +24,16 @@
 
     <!-- Navigation -->
     <string name="back_to_home">Back to Home</string>
+
+    <!-- Difficulty -->
+    <string name="difficulty_easy">Easy</string>
+    <string name="difficulty_medium">Medium</string>
+    <string name="difficulty_hard">Hard</string>
+
+    <!-- GameScreen1 Selection -->
+    <string name="select_difficulty">Select Difficulty</string>
+    <string name="select_category">Select Category</string>
+    <string name="all_categories">All</string>
+    <string name="toast_missing_selection">Please select both difficulty and category</string>
+    <string name="back_to_game_selection">Back to Game Selection</string>
 </resources>
