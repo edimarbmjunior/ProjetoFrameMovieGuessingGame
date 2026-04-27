@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">ProjetoFrameMovieGuessingGame</string>
+
+    <!-- Home Screen -->
+    <string name="app_title">Frame Guess</string>
+    <string name="tagline">Adivinhe o filme a partir de um único frame.</string>
+    <string name="start_game">Iniciar Jogo</string>
+    <string name="how_to_play">Como Jogar</string>
+
+    <!-- Theme Toggle -->
+    <string name="theme_toggle_light">Mudar para modo claro</string>
+    <string name="theme_toggle_dark">Mudar para modo escuro</string>
+
+    <!-- Game Selection Dialog -->
+    <string name="choose_game_mode">Escolha o Modo de Jogo</string>
+    <string name="classic_mode">Modo Clássico</string>
+    <string name="classic_mode_desc">Adivinhe o filme a partir de um único frame.</string>
+    <string name="cancel">Cancelar</string>
+
+    <!-- How to Play Dialog -->
+    <string name="how_to_play_title">Como Jogar</string>
+    <string name="how_to_play_desc">Você verá um único frame de um filme. Seu objetivo é adivinhar qual é o filme. Boa sorte!</string>
+    <string name="got_it">Entendi!</string>
+
+    <!-- Navigation -->
+    <string name="back_to_home">Voltar para Início</string>
+</resources>

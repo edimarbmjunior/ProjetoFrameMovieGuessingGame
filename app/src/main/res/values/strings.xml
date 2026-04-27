@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">ProjetoFrameMovieGuessingGame</string>
+
+    <!-- Home Screen -->
+    <string name="app_title">Frame Guess</string>
+    <string name="tagline">Guess the movie from a single frame.</string>
+    <string name="start_game">Start Game</string>
+    <string name="how_to_play">How to Play</string>
+
+    <!-- Theme Toggle -->
+    <string name="theme_toggle_light">Switch to light mode</string>
+    <string name="theme_toggle_dark">Switch to dark mode</string>
+
+    <!-- Game Selection Dialog -->
+    <string name="choose_game_mode">Choose Game Mode</string>
+    <string name="classic_mode">Classic Mode</string>
+    <string name="classic_mode_desc">Guess the movie from a single frame.</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- How to Play Dialog -->
+    <string name="how_to_play_title">How to Play</string>
+    <string name="how_to_play_desc">You will be shown a single frame from a movie. Your goal is to guess which movie it is. Good luck!</string>
+    <string name="got_it">Got it!</string>
+
+    <!-- Navigation -->
+    <string name="back_to_home">Back to Home</string>
 </resources>
