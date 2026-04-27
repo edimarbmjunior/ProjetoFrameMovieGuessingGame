@@ -1,8 +1,37 @@
+# Arquivos de compilação e build
+build/
+*/build/
+
+# Android Studio - configurações do usuário e de projeto
+.idea/
+*.iml
+local.properties
+captures/
+.navigation/
+
+# Chaves de assinatura (Segurança!)
+*.jks
+*.keystore
+*.p12
+
+# Firebase/Google Services
+google-services.json
+
+# Logs e relatórios
+*.log
+lint/intermediates/
+lint/generated/
+lint/outputs/
+lint/tmp/
+lint/reports/
+
+# Outros
+.DS_Store
+.gradle/
+.externalNativeBuild/
+
 # Compiled class file
 *.class
-
-# Log file
-*.log
 
 # BlueJ files
 *.ctxt
@@ -25,3 +54,4 @@ replay_pid*
 
 # Kotlin Gradle plugin data, see https://kotlinlang.org/docs/whatsnew20.html#new-directory-for-kotlin-data-in-gradle-projects
 .kotlin/
+
