@@ -1,3 +1,58 @@
 <resources>
     <string name="app_name">ProjetoFrameMovieGuessingGame</string>
+
+    <!-- Home Screen -->
+    <string name="app_title">Frame Guess</string>
+    <string name="tagline">Guess the movie from a single frame.</string>
+    <string name="start_game">Start Game</string>
+    <string name="how_to_play">How to Play</string>
+
+    <!-- Theme Toggle -->
+    <string name="theme_toggle_light">Switch to light mode</string>
+    <string name="theme_toggle_dark">Switch to dark mode</string>
+
+    <!-- Game Selection Dialog -->
+    <string name="choose_game_mode">Choose Game Mode</string>
+    <string name="classic_mode">Classic Mode</string>
+    <string name="classic_mode_desc">Guess the movie from a single frame.</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- How to Play Dialog -->
+    <string name="how_to_play_title">How to Play</string>
+    <string name="how_to_play_desc">You will be shown a single frame from a movie. Your goal is to guess which movie it is. Good luck!</string>
+    <string name="got_it">Got it!</string>
+
+    <!-- Navigation -->
+    <string name="back_to_home">Back to Home</string>
+
+    <!-- Difficulty -->
+    <string name="difficulty_easy">Easy</string>
+    <string name="difficulty_medium">Medium</string>
+    <string name="difficulty_hard">Hard</string>
+
+    <!-- GameScreen1 Selection -->
+    <string name="select_difficulty">Select Difficulty</string>
+    <string name="select_category">Select Category</string>
+    <string name="all_categories">All</string>
+    <string name="toast_missing_selection">Please select both difficulty and category</string>
+    <string name="back_to_game_selection">Back to Game Selection</string>
+
+    <!-- GameScreen1Askeds -->
+    <string name="guess_the_movie">Guess the Movie</string>
+    <string name="movie_counter">Movie %1$d of %2$d</string>
+    <string name="frame_counter">Image %1$d of %2$d</string>
+    <string name="enter_movie_name">Enter movie name...</string>
+    <string name="submit">Submit</string>
+    <string name="surrender">Surrender</string>
+    <string name="correct">Correct!</string>
+    <string name="wrong_answer">Wrong! The movie was: %1$s</string>
+    <string name="surrender_result">The movie was: %1$s</string>
+    <string name="game_over">Game Over!</string>
+    <string name="results">Results</string>
+    <string name="correct_count">Correct: %1$d</string>
+    <string name="wrong_count">Wrong: %1$d</string>
+    <string name="play_again">Play Again</string>
+    <string name="home">Home</string>
+    <string name="no_movies_found">No movies found for selected options</string>
+    <string name="continue_button">Continue</string>
 </resources>
