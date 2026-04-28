@@ -16,10 +16,11 @@ class MovieRepository {
 
     fun addMovie(movie: Movie) {
         val existingIndex = _movies.indexOfFirst {
-            it.name.equals(movie.name, ignoreCase = true)
+            it.name.equals(movie.name, ignoreCase = true) ||
+            it.nameEn.equals(movie.nameEn, ignoreCase = true)
         }
         if (existingIndex != -1) {
-            Log.w("MovieRepository", "Duplicate movie found: '${movie.name}'. Overwriting existing entry.")
+            Log.w("MovieRepository", "Duplicate movie found: '${movie.name}' / '${movie.nameEn}'. Overwriting existing entry.")
             _movies[existingIndex] = movie
         } else {
             _movies.add(movie)
@@ -35,7 +36,8 @@ class MovieRepository {
     fun getMovieById(id: String): Movie? = _movies.find { it.id == id }
 
     fun getMovieByName(name: String): Movie? = _movies.find {
-        it.name.equals(name, ignoreCase = true)
+        it.name.equals(name, ignoreCase = true) ||
+        it.nameEn.equals(name, ignoreCase = true)
     }
 
     fun getFramesByMovieId(movieId: String): List<ImageFrame> {

@@ -96,7 +96,8 @@ class MainActivity : ComponentActivity() {
                             navController = navController,
                             difficulty = difficulty,
                             category = category,
-                            movieRepository = movieRepository
+                            movieRepository = movieRepository,
+                            appLocale = appLocale
                         )
                     }
                     composable(

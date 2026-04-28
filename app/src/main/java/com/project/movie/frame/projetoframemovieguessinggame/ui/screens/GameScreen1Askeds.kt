@@ -59,7 +59,8 @@ fun GameScreen1Askeds(
     navController: NavController,
     difficulty: String,
     category: String,
-    movieRepository: MovieRepository
+    movieRepository: MovieRepository,
+    appLocale: String
 ) {
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -246,7 +247,11 @@ fun GameScreen1Askeds(
                             keyboardController?.hide()
                             focusManager.clearFocus()
 
-                            if (userGuess.trim().equals(currentMovie.name, ignoreCase = true)) {
+                            val guess = userGuess.trim()
+                            val isCorrect = guess.equals(currentMovie.name, ignoreCase = true) ||
+                                    guess.equals(currentMovie.nameEn, ignoreCase = true)
+
+                            if (isCorrect) {
                                 correctCount++
                                 feedbackMessage = correctText
                                 isShowingFeedback = true
@@ -262,7 +267,7 @@ fun GameScreen1Askeds(
                                     userGuess = ""
                                 } else {
                                     wrongCount++
-                                    feedbackMessage = String.format(wrongAnswerFormat, currentMovie.name)
+                                    feedbackMessage = String.format(wrongAnswerFormat, currentMovie.getLocalizedName(appLocale))
                                     isShowingFeedback = true
                                     enableInput = false
 
@@ -287,7 +292,7 @@ fun GameScreen1Askeds(
                             focusManager.clearFocus()
 
                             wrongCount++
-                            feedbackMessage = String.format(surrenderFormat, currentMovie.name)
+                            feedbackMessage = String.format(surrenderFormat, currentMovie.getLocalizedName(appLocale))
                             isShowingFeedback = true
                             enableInput = false
 

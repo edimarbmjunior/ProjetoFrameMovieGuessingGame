@@ -39,6 +39,7 @@ object MovieJsonLoader {
                 val movie = Movie(
                     id = movieId,
                     name = dto.name,
+                    nameEn = dto.nameEn,
                     year = dto.year,
                     director = dto.director,
                     category = dto.category,
