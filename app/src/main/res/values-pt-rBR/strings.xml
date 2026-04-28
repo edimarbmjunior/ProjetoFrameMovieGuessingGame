@@ -54,4 +54,5 @@
     <string name="play_again">Jogar Novamente</string>
     <string name="home">Início</string>
     <string name="no_movies_found">Nenhum filme encontrado para as opções selecionadas</string>
+    <string name="continue_button">Continuar</string>
 </resources>

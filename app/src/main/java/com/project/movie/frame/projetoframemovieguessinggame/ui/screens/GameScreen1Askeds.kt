@@ -1,5 +1,6 @@
 package com.project.movie.frame.projetoframemovieguessinggame.ui.screens
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -32,6 +33,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.key
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -52,6 +54,8 @@ import com.project.movie.frame.projetoframemovieguessinggame.data.model.Difficul
 import com.project.movie.frame.projetoframemovieguessinggame.data.repository.MovieRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
+private const val TAG = "GameScreen1Askeds"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -109,6 +113,7 @@ fun GameScreen1Askeds(
     val enterMovieNameText = stringResource(R.string.enter_movie_name)
     val submitText = stringResource(R.string.submit)
     val surrenderText = stringResource(R.string.surrender)
+    val continueText = stringResource(R.string.continue_button)
     val movieCounterFormat = stringResource(R.string.movie_counter)
     val frameCounterFormat = stringResource(R.string.frame_counter)
 
@@ -125,6 +130,13 @@ fun GameScreen1Askeds(
     val currentMovie = movies[currentMovieIndex]
     val currentFrames = currentMovie.images
     val currentFrame = currentFrames[currentFrameIndex]
+
+    // Log frame advancement for debugging
+    Log.d(
+        TAG,
+        "Movie[${currentMovieIndex + 1}/${movies.size}] Frame[${currentFrameIndex + 1}/${currentFrames.size}] " +
+        "order=${currentFrame.order} id=${currentFrame.id} url=${currentFrame.path}"
+    )
 
     fun navigateToFinish() {
         navController.navigate("finish/$difficulty/$category/$correctCount/$wrongCount") {
@@ -208,12 +220,19 @@ fun GameScreen1Askeds(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                UrlImage(
-                    imageUrl = currentFrame.path,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(240.dp)
-                )
+                key(currentFrame.id) {
+                    Log.d(
+                        TAG,
+                        "Movie[${currentMovieIndex + 1}/${movies.size}] Frame[${currentFrameIndex + 1}/${currentFrames.size}] " +
+                                "order=${currentFrame.order} id=${currentFrame.id} url=${currentFrame.path}"
+                    )
+                    UrlImage(
+                        imageUrl = currentFrame.path,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(240.dp)
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(8.dp))
 
@@ -256,11 +275,6 @@ fun GameScreen1Askeds(
                                 feedbackMessage = correctText
                                 isShowingFeedback = true
                                 enableInput = false
-
-                                scope.launch {
-                                    delay(4500)
-                                    advanceToNextMovieOrFinish()
-                                }
                             } else {
                                 if (currentFrameIndex + 1 < currentFrames.size) {
                                     currentFrameIndex++
@@ -270,11 +284,6 @@ fun GameScreen1Askeds(
                                     feedbackMessage = String.format(wrongAnswerFormat, currentMovie.getLocalizedName(appLocale))
                                     isShowingFeedback = true
                                     enableInput = false
-
-                                    scope.launch {
-                                        delay(7500)
-                                        advanceToNextMovieOrFinish()
-                                    }
                                 }
                             }
                         },
@@ -295,11 +304,6 @@ fun GameScreen1Askeds(
                             feedbackMessage = String.format(surrenderFormat, currentMovie.getLocalizedName(appLocale))
                             isShowingFeedback = true
                             enableInput = false
-
-                            scope.launch {
-                                delay(1500)
-                                advanceToNextMovieOrFinish()
-                            }
                         },
                         modifier = Modifier.weight(1f),
                         enabled = enableInput,
@@ -334,11 +338,11 @@ fun GameScreen1Askeds(
                             }
                         )
                     ) {
-                        Box(
+                        Column(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(vertical = 48.dp),
-                            contentAlignment = Alignment.Center
+                                .padding(vertical = 32.dp, horizontal = 16.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Text(
                                 text = feedbackMessage,
@@ -349,8 +353,18 @@ fun GameScreen1Askeds(
                                     MaterialTheme.colorScheme.onErrorContainer
                                 },
                                 textAlign = TextAlign.Center,
-                                modifier = Modifier.padding(horizontal = 16.dp)
+                                modifier = Modifier.padding(bottom = 24.dp)
                             )
+
+                            Button(
+                                onClick = { advanceToNextMovieOrFinish() },
+                                shape = RoundedCornerShape(12.dp)
+                            ) {
+                                Text(
+                                    text = continueText,
+                                    style = MaterialTheme.typography.titleMedium
+                                )
+                            }
                         }
                     }
                 }
@@ -368,6 +382,8 @@ private fun UrlImage(
         model = imageUrl,
         contentDescription = null,
         modifier = modifier,
-        contentScale = ContentScale.Fit
+        contentScale = ContentScale.Fit,
+        placeholder = null,
+        error = null
     )
 }

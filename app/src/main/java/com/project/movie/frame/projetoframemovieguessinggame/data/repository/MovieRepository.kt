@@ -72,6 +72,6 @@ class MovieRepository {
                     .filter { it.difficulty == difficulty }
                     .sortedBy { it.order }
             )
-        }
+        }.shuffled()
     }
 }
