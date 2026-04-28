@@ -253,7 +253,7 @@ fun GameScreen1Askeds(
                                 enableInput = false
 
                                 scope.launch {
-                                    delay(1500)
+                                    delay(4500)
                                     advanceToNextMovieOrFinish()
                                 }
                             } else {
@@ -267,7 +267,7 @@ fun GameScreen1Askeds(
                                     enableInput = false
 
                                     scope.launch {
-                                        delay(1500)
+                                        delay(7500)
                                         advanceToNextMovieOrFinish()
                                     }
                                 }
