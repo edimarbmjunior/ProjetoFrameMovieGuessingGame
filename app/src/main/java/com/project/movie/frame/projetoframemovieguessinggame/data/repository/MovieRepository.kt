@@ -39,7 +39,7 @@ class MovieRepository {
     }
 
     fun getFramesByMovieId(movieId: String): List<ImageFrame> {
-        return _movies.find { it.id == movieId }?.images ?: emptyList()
+        return _movies.find { it.id == movieId }?.images?.sortedBy { it.order } ?: emptyList()
     }
 
     fun getFramesByMovieIdAndDifficulty(movieId: String, difficulty: Difficulty): List<ImageFrame> {
@@ -53,5 +53,23 @@ class MovieRepository {
 
     fun getUniqueCategories(): List<String> {
         return _movies.map { it.category }.distinct().sorted()
+    }
+
+    fun getMoviesByDifficultyAndCategory(
+        difficulty: Difficulty,
+        category: String
+    ): List<Movie> {
+        return _movies.filter { movie ->
+            val categoryMatch = category.equals("All", ignoreCase = true) ||
+                    movie.category.equals(category, ignoreCase = true)
+            val hasFramesOfDifficulty = movie.images.any { it.difficulty == difficulty }
+            categoryMatch && hasFramesOfDifficulty
+        }.map { movie ->
+            movie.copy(
+                images = movie.images
+                    .filter { it.difficulty == difficulty }
+                    .sortedBy { it.order }
+            )
+        }
     }
 }

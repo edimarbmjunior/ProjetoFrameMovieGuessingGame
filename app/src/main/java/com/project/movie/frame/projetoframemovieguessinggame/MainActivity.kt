@@ -95,11 +95,30 @@ class MainActivity : ComponentActivity() {
                         GameScreen1Askeds(
                             navController = navController,
                             difficulty = difficulty,
-                            category = category
+                            category = category,
+                            movieRepository = movieRepository
                         )
                     }
-                    composable("finish") {
-                        FinishScreen(navController = navController)
+                    composable(
+                        "finish/{difficulty}/{category}/{correct}/{wrong}",
+                        arguments = listOf(
+                            navArgument("difficulty") { type = NavType.StringType },
+                            navArgument("category") { type = NavType.StringType },
+                            navArgument("correct") { type = NavType.IntType },
+                            navArgument("wrong") { type = NavType.IntType }
+                        )
+                    ) { backStackEntry ->
+                        val difficulty = backStackEntry.arguments?.getString("difficulty") ?: ""
+                        val category = backStackEntry.arguments?.getString("category") ?: ""
+                        val correct = backStackEntry.arguments?.getInt("correct") ?: 0
+                        val wrong = backStackEntry.arguments?.getInt("wrong") ?: 0
+                        FinishScreen(
+                            navController = navController,
+                            difficulty = difficulty,
+                            category = category,
+                            correctCount = correct,
+                            wrongCount = wrong
+                        )
                     }
                 }
             }

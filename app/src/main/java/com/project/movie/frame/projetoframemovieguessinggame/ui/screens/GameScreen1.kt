@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -177,17 +176,19 @@ fun GameScreen1(
 
             Spacer(modifier = Modifier.weight(1f))
 
+            val missingSelectionText = stringResource(R.string.toast_missing_selection)
             // Start Game Button
             Button(
                 onClick = {
                     if (selectedDifficulty != null && selectedCategory != null) {
+                        val categoryParam = if (selectedCategory == allCategoriesLabel) "ALL" else selectedCategory
                         navController.navigate(
-                            "game1Askeds/${selectedDifficulty!!.name}/${selectedCategory}"
+                            "game1Askeds/${selectedDifficulty!!.name}/$categoryParam"
                         )
                     } else {
                         Toast.makeText(
                             context,
-                            context.getString(R.string.toast_missing_selection),
+                            missingSelectionText,
                             Toast.LENGTH_SHORT
                         ).show()
                     }

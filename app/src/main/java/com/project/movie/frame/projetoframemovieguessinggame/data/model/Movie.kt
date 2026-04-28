@@ -13,5 +13,6 @@ data class ImageFrame(
     val id: String,
     val movieId: String,
     val path: String,
-    val difficulty: Difficulty
+    val difficulty: Difficulty,
+    val order: Int
 )

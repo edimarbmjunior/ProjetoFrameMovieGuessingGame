@@ -36,4 +36,22 @@
     <string name="all_categories">Todos</string>
     <string name="toast_missing_selection">Selecione dificuldade e categoria</string>
     <string name="back_to_game_selection">Voltar para Seleção</string>
+
+    <!-- GameScreen1Askeds -->
+    <string name="guess_the_movie">Adivinhe o Filme</string>
+    <string name="movie_counter">Filme %1$d de %2$d</string>
+    <string name="frame_counter">Imagem %1$d de %2$d</string>
+    <string name="enter_movie_name">Digite o nome do filme...</string>
+    <string name="submit">Confirmar</string>
+    <string name="surrender">Desistir</string>
+    <string name="correct">Correto!</string>
+    <string name="wrong_answer">Errado! O filme era: %1$s</string>
+    <string name="surrender_result">O filme era: %1$s</string>
+    <string name="game_over">Fim de Jogo!</string>
+    <string name="results">Resultados</string>
+    <string name="correct_count">Acertos: %1$d</string>
+    <string name="wrong_count">Erros: %1$d</string>
+    <string name="play_again">Jogar Novamente</string>
+    <string name="home">Início</string>
+    <string name="no_movies_found">Nenhum filme encontrado para as opções selecionadas</string>
 </resources>

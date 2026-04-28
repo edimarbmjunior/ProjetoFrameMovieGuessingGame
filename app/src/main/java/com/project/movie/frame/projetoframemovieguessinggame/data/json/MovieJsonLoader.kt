@@ -26,12 +26,13 @@ object MovieJsonLoader {
 
             for (dto in moviesDto) {
                 val movieId = UUID.randomUUID().toString()
-                val images = dto.images.map { imageDto ->
+                val images = dto.images.mapIndexed { index, imageDto ->
                     ImageFrame(
                         id = UUID.randomUUID().toString(),
                         movieId = movieId,
                         path = imageDto.path,
-                        difficulty = imageDto.difficulty
+                        difficulty = imageDto.difficulty,
+                        order = index
                     )
                 }
 
